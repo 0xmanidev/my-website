@@ -2,6 +2,22 @@
 body {
   background-color: #000000;
 }
+.logo-container {
+    text-align: center;
+    margin: 40px 0 20px 0; 
+}
+
+.main-logo {
+    max-width: 100%;    
+    width: 450px;       
+    height: auto;
+    
+    
+    image-rendering: pixelated; 
+    
+   
+    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
+}
 .normal-text{
   color: #ffffff;
   font-family: 'JetBrains Mono', monospace;
@@ -12,7 +28,7 @@ body {
 #ist-clock {
   color: #ffffff;
   display: inline-block;
-  font-family: '', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 14px;
   line-height: 1.5;
 }
