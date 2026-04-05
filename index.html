@@ -5,26 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mani's corner</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://googleapis.com" rel="stylesheet">
-    
+    <link href="https://googleapis.com" rel="stylesheet">  
 </head>
 <body>
     <div class="normal-text"><p>Hi, guys, I am from India, as of now I am student pursuing engineering in computer science, I like building stuff, even hardware or software, and like thinkering with technology a lot. And I am obssesed with ideas of privacy and selfhosting and a big fan of open source things.
     </p></div>
-    <span class="normal-text">Current IST: </span>
+    <span class="normal-text">Current time for me:</span>
     <div id="ist-clock"></div>
-
+    <div class="normal-text">feel free to contact me<p></p></div>
+    <div id="hero"><img class ="icons" src="/assets/email-outline.svg">
+    <a href="https://github.com/0xmanidev"><img class ="icons" src="/assets/github-outline.svg"></a>
+    <img class ="icons" src="/assets/logo-instagram.svg">
+    <img class ="icons" src="/assets/logo-slack.svg"></div>
+    
+    
     <script>
         function updateIST() {
         const now = new Date();
         
-        // Formatting for IST with AM/PM
+        
         const istTime = now.toLocaleString("en-IN", {
             timeZone: "Asia/Kolkata",
             hour: '2-digit',
             minute: '2-digit',
             second: '2-digit',
-            hour12: true // Ensures AM/PM shows up
+            hour12: true 
         });
 
         document.getElementById('ist-clock').textContent = istTime;

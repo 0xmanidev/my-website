@@ -3,15 +3,27 @@ body {
   background-color: #252525;
 }
 .normal-text{
-  color: #80FFDB;
+  color: #ffffff;
   font-family: 'JetBrains Mono', monospace;
   font-size: 14px; 
   line-height: 1.5;
+  margin: 20px;
 }
 #ist-clock {
-  color: #80FFDB;
+  color: #ffffff;
   display: inline-block;
   font-family: 'JetBrains Mono', monospace;
   font-size: 14px;
   line-height: 1.5;
+}
+#hero{
+  margin: 20px;
+}
+
+.icons {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  vertical-align: middle;
+  filter: invert(100%) sepia(0%) saturate(7465%) hue-rotate(132deg) brightness(97%) contrast(107%);
 }
