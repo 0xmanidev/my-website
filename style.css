@@ -65,15 +65,15 @@ body {
     white-space: pre; 
 }
 ul {
-    list-style-type: none; /* Removes default bullets */
-    padding-left: 10px;    /* Adds space for the dash */
+    list-style-type: none; 
+    padding-left: 10px;   
   }
 
   ul li::before {
-    content: "- ";        /* Adds the dash */
-    margin-right: 8px;     /* Space between dash and text */
+    content: "- ";       
+    margin-right: 8px;    
   }
-  /* New Header Styling */
+
 .japanese-header {
     font-family: 'JetBrains Mono', monospace;
     font-size: 48px;
@@ -85,16 +85,16 @@ ul {
 }
 .japanese-layer {
     position: absolute;
-    top: -30px;       /* Keeps it overlapping the border */
-    right: 15px;      /* Aligns it to the right side */
+    top: -30px;       
+    right: 15px;    
     
-    /* Updated Font: JetBrains Mono + Japanese Fallbacks */
+
     
     font-family: "Noto Sans JP", sans-serif;
     font-size: 50px;
     font-weight: 700;
 
-    color: #c4a5ff; /* bright tube center */
+    color: #c4a5ff;
 
     text-shadow:
         0 0 2px #c4a5ff,
@@ -108,4 +108,23 @@ ul {
 .line {
     white-space: pre;
     font-family: 'JetBrains Mono', monospace;
+}
+
+
+.blinkies-container {
+    border: 1px solid #ffffff7e;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.blinkies-container img {
+    width: 88px;
+    height: 31px;
+    image-rendering: pixelated;
 }
