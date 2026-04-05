@@ -12,7 +12,7 @@ body {
 #ist-clock {
   color: #ffffff;
   display: inline-block;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: '', monospace;
   font-size: 14px;
   line-height: 1.5;
 }
@@ -34,4 +34,32 @@ body {
   max-width: 500px;
   margin: 20px auto;
 
+}
+.terminal-container {
+    border: 1px solid #ffffff7e; 
+    padding: 20px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace; 
+    color: #ffffff;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.terminal-header {
+    margin-bottom: 15px;
+}
+
+.status-ok {
+    color: #00ff00; 
+    text-shadow: 0 0 5px #00ff00; 
+}
+
+.terminal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;
+}
+
+.line {
+    white-space: pre; 
 }
