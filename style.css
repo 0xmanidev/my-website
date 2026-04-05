@@ -1,6 +1,6 @@
 
 body {
-  background-color: #252525;
+  background-color: #000000;
 }
 .normal-text{
   color: #ffffff;
@@ -43,6 +43,7 @@ body {
     color: #ffffff;
     max-width: 500px;
     margin: 20px auto;
+    position: relative; 
 }
 
 .terminal-header {
@@ -62,4 +63,49 @@ body {
 
 .line {
     white-space: pre; 
+}
+ul {
+    list-style-type: none; /* Removes default bullets */
+    padding-left: 10px;    /* Adds space for the dash */
+  }
+
+  ul li::before {
+    content: "- ";        /* Adds the dash */
+    margin-right: 8px;     /* Space between dash and text */
+  }
+  /* New Header Styling */
+.japanese-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 48px;
+    color: #6930C3;
+    text-align: center;
+    margin: 20px auto 10px auto;
+    text-shadow: 0 0 10px #6930C3, 0 0 20px #6930C3;
+    letter-spacing: 2px;
+}
+.japanese-layer {
+    position: absolute;
+    top: -30px;       /* Keeps it overlapping the border */
+    right: 15px;      /* Aligns it to the right side */
+    
+    /* Updated Font: JetBrains Mono + Japanese Fallbacks */
+    
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+
+    color: #c4a5ff; /* bright tube center */
+
+    text-shadow:
+        0 0 2px #c4a5ff,
+        0 0 6px #a855f7,
+        0 0 14px #9333ea,
+        0 0 28px rgba(147,51,234,0.6);
+    
+    pointer-events: none; 
+    z-index: 10;      
+}
+.line {
+    white-space: pre;
+    font-family: 'JetBrains Mono', monospace;
 }
