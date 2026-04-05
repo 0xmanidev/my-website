@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mani's corner</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="normal-text"><p>Hi, guys, I am from India, as of now I am student pursuing engineering in computer science, I like building stuff, even hardware or software, and like thinkering with technology a lot. And I am obssesed with ideas of privacy and selfhosting and a big fan of open source things.
+    </p></div>
+    <span class="normal-text">Current IST: </span>
+    <div id="ist-clock"></div>
+
+    <script>
+        function updateIST() {
+        const now = new Date();
+        
+        // Formatting for IST with AM/PM
+        const istTime = now.toLocaleString("en-IN", {
+            timeZone: "Asia/Kolkata",
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true // Ensures AM/PM shows up
+        });
+
+        document.getElementById('ist-clock').textContent = istTime;
+        }
+
+        updateIST();
+        setInterval(updateIST, 1000);
+    </script>
+        
+</body>
+</html>

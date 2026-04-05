@@ -1,0 +1,17 @@
+
+body {
+  background-color: #252525;
+}
+.normal-text{
+  color: #80FFDB;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; 
+  line-height: 1.5;
+}
+#ist-clock {
+  color: #80FFDB;
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
