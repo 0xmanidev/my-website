@@ -1,157 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mani's corner</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"> 
-</head>
-<body>
-    
-    <div class="logo-container">
-        <img src="/assets/mani's corner.png" alt="Mani's Corner" class="main-logo">
-    </div>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Mani's corner</title>
+		<link rel="stylesheet" href="style.css">
+		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div id="startup-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer;">
+			<div style="font-family: 'JetBrains Mono', monospace; color: #80FFDB; text-align: center;">
+				<p>SYSTEM_BOOT_SEQUENCE</p>
+				<p>Initializing...</p>
+				<p style="margin-top: 20px; animation: blink 1s infinite;">[ CLICK TO ENTER ] </p>
+			</div>
+		</div>
+		<style>
+			@keyframes blink { 50% { opacity: 0; } }
+		</style>
+		<div class="logo-container">
+			<img src="/assets/mani's corner.png" alt="Mani's Corner" class="main-logo">
+		</div>
+		<div class="page-layout">
+			<div class="left-column">
+				<div class="box">
+					<div class="normal-text">
+						<p>Hi, guys, I am manikanta from India, as of now I am student pursuing engineering in computer science, I like building stuff, even hardware or software, and like thinkering with technology a lot. And I am obssesed with ideas of privacy and selfhosting and a big fan of open source things.</p>
+					</div>
+					<span class="normal-text">Current time for me:</span>
+					<div id="ist-clock"></div>
+					<div class="normal-text">feel free to contact me</div>
+					<div id="hero">
+						<a href="mailto:manikanta.vasamsetti.dev@gmail.com"><img class="icons" src="/assets/email-outline.svg"></a>
+						<a href="https://github.com/0xmanidev"><img class="icons" src="/assets/github-outline.svg"></a>
+						<a href="https://www.instagram.com/mani.___615/"><img class="icons" src="/assets/logo-instagram.svg"></a>
+						<a href="https://hackclub.enterprise.slack.com/team/U0AM8B3DY57"><img class="icons" src="/assets/logo-slack.svg"></a>
+					</div>
+					<div class="normal-text">
+						<p>Things I like:</p>
+					</div>
+					<div class="normal-text dash-list">
+						<ul>
+							<li>mostly computersss</li>
+							<li>Ki cad</li>
+							<li>fusion,blender</li>
+							<li>proxmox,truenas</li>
+							<li>linux all of it but these fedora,arch,bazzite</li>
+							<li>c,python,Rust,javascript,golang,java</li>
+						</ul>
+					</div>
+				</div>
+				<div class="blinkies-container">
+					<img src="/assets/eyes.gif" alt="Blinky"><img src="/assets/chrome.gif" alt="Blinky"><img src="/assets/freespeech.gif" alt="Blinky"><img src="/assets/fedora.gif" alt="Blinky"><img src="/assets/human.gif" alt="Blinky"><img src="/assets/internet.gif" alt="Blinky"><img src="/assets/privacy.gif" alt="Blinky"><img src="/assets/repair.gif" alt="Blinky"><img src="/assets/say-no-to-web3.gif" alt="Blinky"><img src="/assets/silicon.gif" alt="Blinky"><img src="/assets/transistor_cafe.gif" alt="Blinky"><img src="/assets/ublock-now.png" alt="Blinky"><img src="/assets/virtual.png" alt="Blinky"><img src="/assets/vscbutton.gif" alt="Blinky"><img src="/assets/spotify.gif" alt="Blinky"><img src="/assets/netscape.gif" alt="Blinky"><img src="/assets/nocookie.gif" alt="Blinky"><img src="/assets/penguin.gif" alt="Blinky"><img src="/assets/undercon.gif" alt="Blinky"><img src="/assets/noerror.gif" alt="Blinky">
+				</div>
+				<div class="terminal-container">
+					<div class="japanese-layer">まに</div>
+					<div class="terminal-header">
+						Systems status: <span class="status-ok">OK</span>
+					</div>
+					<div class="terminal-grid">
+						<div class="column">
+							<div class="line">[ <span class="status-ok">OK</span> ] website</div>
+							<div class="line">[ <span class="status-ok">OK</span> ] proxy</div>
+							<div class="line">[ <span class="status-ok">OK</span> ] DNS</div>
+						</div>
+						<div class="column">
+							<div class="line">[ <span class="status-ok">OK</span> ] alive</div>
+							<div class="line">[ <span class="status-ok">OK</span> ] earth</div>
+							<div class="line">[ <span class="status-ok">OK</span> ] internet</div>
+						</div>
+					</div>
+				</div>
+				<div class="box">
+					<p class="normal-text" style="margin: 0 0 10px 0; color: #80FFDB;">environment audio:</p>
+					<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 4px; border: 1px solid #252525;">
+						<div id="player" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+					</div>
+				</div>
+			</div>
+			<div class="right-column">
+				<div class="moon-container">
+					<img id="moon-visual" src="" alt="Moon Phase" class="moon-icon" style="width: 80px; height: auto; image-rendering: pixelated; display: block; margin: 0 auto;">
+					<div class="moon-info">
+						<p>Phase: <span id="lp-phase" style="color: #ffff00;">Loading...</span></p>
+						<p>Illumin: <span id="lp-illum" style="color: #ffff00;">--</span></p>
+						<p>Age: <span id="lp-age" style="color: #ffff00;">--</span> days</p>
+						<p>Local: <span id="lp-time" style="color: #ffff00;">--</span></p>
+					</div>
+				</div>
+				<div class="fav-gifs">
+					<p class="normal-text" style="text-align:center; margin:10px 0;">fav gifs</p>
+					<img src="/assets/comp.gif" alt="gif" style="width: 100%; image-rendering: pixelated;">
+					<img src="/assets/keyb.gif" alt="gif" style="width: 100%; image-rendering: pixelated;">
+					<img src="/assets/wasd.gif" alt="gif" style="width: 100%; image-rendering: pixelated;">
+					<img src="/assets/metro.gif" alt="gif" style="width: 100%; image-rendering: pixelated;">
+					<img src="/assets/sleep.gif" alt="gif" style="width: 100%; image-rendering: pixelated;">
+				</div>
+			</div>
+		</div>
 
-    <div class="page-layout">
-        
-        <div class="left-column">
-            <div class="box">
-                <div class="normal-text">
-                    <p>Hi, guys, I am from India, as of now I am student pursuing engineering in computer science, I like building stuff, even hardware or software, and like thinkering with technology a lot. And I am obssesed with ideas of privacy and selfhosting and a big fan of open source things.</p>
-                </div>
-                <span class="normal-text">Current time for me:</span>
-                <div id="ist-clock"></div>
-                <div class="normal-text">feel free to contact me</div>
-                
-                <div id="hero">
-                    <a href="mailto:manikanta.vasamsetti.dev@gmail.com"><img class="icons" src="/assets/email-outline.svg"></a>
-                    <a href="https://github.com/0xmanidev"><img class="icons" src="/assets/github-outline.svg"></a>
-                    <a href="https://www.instagram.com/mani.___615/"><img class="icons" src="/assets/logo-instagram.svg"></a>
-                    <a href="https://hackclub.enterprise.slack.com/team/U0AM8B3DY57"><img class="icons" src="/assets/logo-slack.svg"></a>
-                </div>
-                
-                <div class="normal-text"><p>Things I like:</p></div>
-                <div class="normal-text dash-list">
-                    <ul>
-                        <li>mostly computersss</li>
-                        <li>Ki cad</li>
-                        <li>fusion,blender</li>
-                        <li>proxmox,truenas</li>
-                        <li>linux all of it but these fedora,arch,bazzite</li>
-                        <li>c,python,Rust,javascript,golang,java</li>
-                    </ul>
-                </div>
-            </div>
+		<script>
+			var tag = document.createElement('script');
+			tag.src = "https://www.youtube.com/iframe_api";
+			var firstScriptTag = document.getElementsByTagName('script')[0];
+			firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+			
+			var player;
+			function onYouTubeIframeAPIReady() {
+			player = new YT.Player('player', {
+			 height: '100%',
+			 width: '100%',
+			 videoId: 'yJ6Lbsmb1lY',
+			 playerVars: { 
+			     'autoplay': 0, 
+			     'controls': 0, 
+			     'loop': 1, 
+			     'playlist': 'yJ6Lbsmb1lY',
+			     'origin': window.location.origin 
+			 }
+			});
+			}
 
-            <div class="blinkies-container">
-                <img src="/assets/eyes.gif" alt="Blinky 1"><img src="/assets/chrome.gif" alt="Blinky 2"><img src="/assets/freespeech.gif" alt="Blinky 3"><img src="/assets/fedora.gif" alt="Blinky "><img src="/assets/human.gif" alt="Blinky "><img src="/assets/internet.gif" alt="Blinky "><img src="/assets/privacy.gif" alt="Blinky "><img src="/assets/repair.gif" alt="Blinky "><img src="/assets/say-no-to-web3.gif" alt="Blinky "><img src="/assets/silicon.gif" alt="Blinky "><img src="/assets/transistor_cafe.gif" alt="Blinky "><img src="/assets/ublock-now.png" alt="Blinky "><img src="/assets/virtual.png" alt="Blinky "><img src="/assets/vscbutton.gif" alt="Blinky "><img src="/assets/spotify.gif" alt="Blinky "><img src="/assets/netscape.gif" alt="Blinky "><img src="/assets/nocookie.gif" alt="Blinky "><img src="/assets/penguin.gif" alt="Blinky "><img src="/assets/undercon.gif" alt="Blinky "><img src="/assets/noerror.gif" alt="Blinky ">
-            </div>
-        
-            <div class="terminal-container">
-                <div class="japanese-layer">まに</div>
-                <div class="terminal-header">
-                    Systems status: <span class="status-ok">OK</span>
-                </div>
-                <div class="terminal-grid">
-                    <div class="column">
-                        <div class="line">[ <span class="status-ok">OK</span> ] website</div>
-                        <div class="line">[ <span class="status-ok">OK</span> ] proxy</div>
-                        <div class="line">[ <span class="status-ok">OK</span> ] DNS</div>
-                    </div>
-                    <div class="column">
-                        <div class="line">[ <span class="status-ok">OK</span> ] alive</div>
-                        <div class="line">[ <span class="status-ok">OK</span> ] earth</div>
-                        <div class="line">[ <span class="status-ok">OK</span> ] internet</div>
-                    </div>
-                </div>
-            </div>
-        </div> 
-
-        <div class="right-column">
-            <div class="moon-container">
-                <img id="moon-visual" src="" alt="Moon Phase" class="moon-icon" style="width: 80px; height: auto; image-rendering: pixelated; display: block; margin: 0 auto;">
-                <div class="moon-info">
-                    <p>Phase: <span id="lp-phase" style="color: #ffff00;">Loading...</span></p>
-                    <p>Illumin: <span id="lp-illum" style="color: #ffff00;">--</span></p>
-                    <p>Age: <span id="lp-age" style="color: #ffff00;">--</span> days</p>
-                    <p>Local: <span id="lp-time" style="color: #ffff00;">--</span></p>
-                </div>
-            </div>
-
-            <div class="fav-gifs">
-                <p class="normal-text" style="text-align:center; margin:10px 0;">fav gifs</p>
-                <img src="/assets/comp.gif" alt="fav gif 1" style="width: 100%; image-rendering: pixelated;">
-                <img src="/assets/keyb.gif" alt="fav gif 2" style="width: 100%; image-rendering: pixelated;">
-                <img src="/assets/wasd.gif" alt="fav gif 3" style="width: 100%; image-rendering: pixelated;">
-                <img src="/assets/metro.gif" alt="fav gif 4" style="width: 100%; image-rendering: pixelated;">
-                <img src="/assets/sleep.gif" alt="fav gif 5" style="width: 100%; image-rendering: pixelated;">
-            </div>
-        </div> 
-    </div> 
-
-    <script>
-        // --- 1. IST Clock Script ---
-        function updateIST() {
-            const now = new Date();
-            const istTime = now.toLocaleString("en-IN", {
-                timeZone: "Asia/Kolkata",
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: true 
-            });
-            const clockEl = document.getElementById('ist-clock');
-            if(clockEl) clockEl.textContent = istTime;
-        }
-        setInterval(updateIST, 1000);
-        updateIST();
-
-        // --- 2. Moon Calculation Script ---
-        function updateMoon() {
-            const date = new Date();
-            const knownNewMoon = new Date(2000, 0, 6, 18, 14, 0);
-            const totalMs = date - knownNewMoon;
-            const totalDays = totalMs / (1000 * 60 * 60 * 24);
-            const lunarCycle = 29.530588853;
-            const age = totalDays % lunarCycle;
-            const phasePercent = age / lunarCycle;
-
-            let phaseName = "";
-            let filename = "";
-
-            if (phasePercent < 0.03 || phasePercent > 0.97) { 
-                phaseName = "New Moon"; filename = "/assets/NewMoon.png"; 
-            } else if (phasePercent < 0.22) { 
-                phaseName = "Waxing Crescent"; filename = "/assets/WaxingCrescent.png"; 
-            } else if (phasePercent < 0.28) { 
-                phaseName = "First Quarter"; filename = "/assets/FirstQuarter.png"; 
-            } else if (phasePercent < 0.47) { 
-                phaseName = "Waxing Gibbous"; filename = "/assets/WaxingGibbous.png"; 
-            } else if (phasePercent < 0.53) { 
-                phaseName = "Full Moon"; filename = "/assets/FullMoon.png"; 
-            } else if (phasePercent < 0.72) { 
-                phaseName = "Waning Gibbous"; filename = "/assets/WaningGibbous.png"; 
-            } else if (phasePercent < 0.78) { 
-                phaseName = "Third Quarter"; filename = "/assets/ThirdQuarter.png"; 
-            } else { 
-                phaseName = "Waning Crescent"; filename = "/assets/WaningCrescent.png"; 
-            }
-
-            document.getElementById('lp-phase').innerText = phaseName;
-            document.getElementById('lp-illum').innerText = (Math.abs(0.5 - phasePercent) * 200).toFixed(1).replace("-","") + "%";
-            document.getElementById('lp-age').innerText = age.toFixed(2);
-            
-            const moonImg = document.getElementById('moon-visual');
-            if (moonImg) moonImg.src = filename;
-        }
-        updateMoon();
-
-        // --- 3. Local Time for Moon Box ---
-        setInterval(() => {
-            const timeEl = document.getElementById('lp-time');
-            if(timeEl) timeEl.innerText = new Date().toLocaleTimeString();
-        }, 1000);
-    </script>
-</body>
+			document.getElementById('startup-overlay').addEventListener('click', function() {
+			this.style.display = 'none'; 
+			
+			if (player && player.playVideo) {
+			 player.unMute(); 
+			 player.playVideo(); 
+			} else {
+			 const iframe = document.querySelector('#player iframe');
+			 if (iframe) {
+			     iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+			 }
+			}
+			});
+			function updateIST() {
+			     const now = new Date();
+			     const istTime = now.toLocaleString("en-IN", {
+			         timeZone: "Asia/Kolkata",
+			         hour: '2-digit',
+			         minute: '2-digit',
+			         second: '2-digit',
+			         hour12: true 
+			     });
+			     const clockEl = document.getElementById('ist-clock');
+			     if(clockEl) clockEl.textContent = istTime;
+			 }
+			 setInterval(updateIST, 1000);
+			 updateIST();
+			
+			 function updateMoon() {
+			     const date = new Date();
+			     const knownNewMoon = new Date(2000, 0, 6, 18, 14, 0);
+			     const totalMs = date - knownNewMoon;
+			     const totalDays = totalMs / (1000 * 60 * 60 * 24);
+			     const lunarCycle = 29.530588853;
+			     const age = totalDays % lunarCycle;
+			     const phasePercent = age / lunarCycle;
+			
+			     let phaseName = "";
+			     let filename = "";
+			
+			     if (phasePercent < 0.03 || phasePercent > 0.97) { 
+			         phaseName = "New Moon"; filename = "/assets/NewMoon.png"; 
+			     } else if (phasePercent < 0.22) { 
+			         phaseName = "Waxing Crescent"; filename = "/assets/WaxingCrescent.png"; 
+			     } else if (phasePercent < 0.28) { 
+			         phaseName = "First Quarter"; filename = "/assets/FirstQuarter.png"; 
+			     } else if (phasePercent < 0.47) { 
+			         phaseName = "Waxing Gibbous"; filename = "/assets/WaxingGibbous.png"; 
+			     } else if (phasePercent < 0.53) { 
+			         phaseName = "Full Moon"; filename = "/assets/FullMoon.png"; 
+			     } else if (phasePercent < 0.72) { 
+			         phaseName = "Waning Gibbous"; filename = "/assets/WaningGibbous.png"; 
+			     } else if (phasePercent < 0.78) { 
+			         phaseName = "Third Quarter"; filename = "/assets/ThirdQuarter.png"; 
+			     } else { 
+			         phaseName = "Waning Crescent"; filename = "/assets/WaningCrescent.png"; 
+			     }
+			
+			     document.getElementById('lp-phase').innerText = phaseName;
+			     document.getElementById('lp-illum').innerText = (Math.abs(0.5 - phasePercent) * 200).toFixed(1).replace("-","") + "%";
+			     document.getElementById('lp-age').innerText = age.toFixed(2);
+			     
+			     const moonImg = document.getElementById('moon-visual');
+			     if (moonImg) moonImg.src = filename;
+			 }
+			 updateMoon();
+			
+			 setInterval(() => {
+			     const timeEl = document.getElementById('lp-time');
+			     if(timeEl) timeEl.innerText = new Date().toLocaleTimeString();
+			 }, 1000);
+		</script>
+	</body>
 </html>

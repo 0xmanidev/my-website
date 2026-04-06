@@ -40,42 +40,40 @@ body {
   height: 24px;
   margin-right: 10px;
   vertical-align: middle;
-  filter: invert(100%) sepia(0%) saturate(7465%) hue-rotate(132deg) brightness(97%) contrast(107%);
+  filter: invert(87%) sepia(72%) saturate(2577%) hue-rotate(152deg) brightness(90%) contrast(95%);
 }
 
-/* --- NEW LAYOUT CONTAINERS --- */
 .page-layout {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 20px; /* Space between the two columns */
-    max-width: 850px; /* Total width of left + right + gap */
+    gap: 20px;
+    max-width: 850px; 
     margin: 0 auto;
     padding: 0 10px;
 }
 
 .left-column {
-    flex: 0 0 500px; /* Forces left side to be exactly 500px */
+    flex: 0 0 500px; 
     display: flex;
     flex-direction: column;
-    gap: 20px; /* This creates the vertical spacing between your boxes */
+    gap: 20px; 
 }
 
 .right-column {
-    flex: 0 0 280px; /* Right sidebar width */
+    flex: 0 0 280px; 
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-/* --- EXISTING CLASSES (Modified margins to fit inside columns) --- */
 .box {
   border: 1px solid #ffffff7e;
   border-radius: 8px;
   padding: 20px;
   max-width: 500px;
-  margin: 0; /* Changed from auto so it fits the column */
-  box-sizing: border-box; /* Ensures padding stays inside */
+  margin: 0; 
+  box-sizing: border-box; 
 }
 
 .terminal-container {
@@ -85,7 +83,7 @@ body {
     font-family: 'JetBrains Mono', monospace; 
     color: #ffffff;
     max-width: 500px;
-    margin: 0; /* Changed from auto */
+    margin: 0; 
     position: relative; 
     box-sizing: border-box;
 }
@@ -95,7 +93,7 @@ body {
     border-radius: 8px;
     padding: 20px;
     max-width: 500px;
-    margin: 0; /* Changed from auto */
+    margin: 0; 
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -109,7 +107,6 @@ body {
     image-rendering: pixelated;
 }
 
-/* --- TERMINAL INNER STYLES (Untouched) --- */
 .terminal-header { margin-bottom: 15px; }
 .status-ok { color: #00ff00; text-shadow: 0 0 5px #00ff00; }
 .terminal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -179,10 +176,9 @@ ul li::before { content: "- "; margin-right: 8px; }
     box-sizing: border-box;
 }
 
-/* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 850px) {
     .page-layout {
-        flex-direction: column; /* Stacks the columns on small screens */
+        flex-direction: column; 
         align-items: center;
     }
     .left-column, .right-column {
