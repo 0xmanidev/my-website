@@ -100,8 +100,18 @@
 			<img src="assets/xp.gif" class="sitter-gif left-sitter" alt="sitter">
 			<img src="assets/minecraft.gif" class="sitter-gif right-sitter" alt="sitter">
 		</div>
+		<div id="cursor-chaser"></div>
 
 		<script>
+			const chaser = document.getElementById('cursor-chaser');
+
+			document.addEventListener('mousemove', (e) => {
+
+				const offsetX = 10; 
+				const offsetY = 10;
+				
+				chaser.style.transform = `translate(${e.clientX + offsetX}px, ${e.clientY + offsetY}px)`;
+			});
 			var tag = document.createElement('script');
 			tag.src = "https://www.youtube.com/iframe_api";
 			var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -125,7 +135,6 @@
 			document.getElementById('startup-overlay').addEventListener('click', function() {
 				this.style.display = 'none'; 
 				
-				// THIS LINE SHOWS THE SITTERS
 				document.getElementById('corner-gifs').style.display = 'block';
 				
 				if (player && player.playVideo) {
@@ -139,7 +148,6 @@
 				}
 			});
 
-			// --- Rest of your IST and Moon scripts ---
 			function updateIST() {
 				const now = new Date();
 				const istTime = now.toLocaleString("en-IN", {
@@ -182,3 +190,5 @@
 				if(timeEl) timeEl.innerText = new Date().toLocaleTimeString();
 			}, 1000);
 		</script>
+	</body>
+</html>
