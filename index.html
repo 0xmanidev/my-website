@@ -83,10 +83,9 @@
 				<div class="moon-container">
 					<img id="moon-visual" src="" alt="Moon Phase" class="moon-icon" style="width: 80px; height: auto; image-rendering: pixelated; display: block; margin: 0 auto;">
 					<div class="moon-info">
-						<p>Phase: <span id="lp-phase" style="color: #ffff00;">Loading...</span></p>
-						<p>Illumin: <span id="lp-illum" style="color: #ffff00;">--</span></p>
-						<p>Age: <span id="lp-age" style="color: #ffff00;">--</span> days</p>
-						<p>Local: <span id="lp-time" style="color: #ffff00;">--</span></p>
+						<p>Phase: <span id="lp-phase" style="color: #80FFDB;">Loading...</span></p>
+						<p>Illumin: <span id="lp-illum" style="color: #80FFDB;">--</span></p>
+						<p>Age: <span id="lp-age" style="color: #80FFDB;">--</span> days</p>
 					</div>
 				</div>
 				<div class="fav-gifs">
@@ -185,11 +184,6 @@
 				if (moonImg) moonImg.src = filename;
 			}
 			updateMoon();
-			
-			setInterval(() => {
-				const timeEl = document.getElementById('lp-time');
-				if(timeEl) timeEl.innerText = new Date().toLocaleTimeString();
-			}, 1000);
 		</script>
 	</body>
 </html>
