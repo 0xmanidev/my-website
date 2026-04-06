@@ -1,7 +1,7 @@
-
 body {
   background-color: #000000;
 }
+
 .logo-container {
     text-align: center;
     margin: 40px 0 20px 0; 
@@ -11,13 +11,10 @@ body {
     max-width: 100%;    
     width: 450px;       
     height: auto;
-    
-    
     image-rendering: pixelated; 
-    
-   
     filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
 }
+
 .normal-text{
   color: #ffffff;
   font-family: 'JetBrains Mono', monospace;
@@ -25,6 +22,7 @@ body {
   line-height: 1.5;
   margin: 20px;
 }
+
 #ist-clock {
   color: #ffffff;
   display: inline-block;
@@ -32,6 +30,7 @@ body {
   font-size: 14px;
   line-height: 1.5;
 }
+
 #hero{
   margin: 20px;
 }
@@ -43,14 +42,42 @@ body {
   vertical-align: middle;
   filter: invert(100%) sepia(0%) saturate(7465%) hue-rotate(132deg) brightness(97%) contrast(107%);
 }
+
+/* --- NEW LAYOUT CONTAINERS --- */
+.page-layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px; /* Space between the two columns */
+    max-width: 850px; /* Total width of left + right + gap */
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.left-column {
+    flex: 0 0 500px; /* Forces left side to be exactly 500px */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* This creates the vertical spacing between your boxes */
+}
+
+.right-column {
+    flex: 0 0 280px; /* Right sidebar width */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- EXISTING CLASSES (Modified margins to fit inside columns) --- */
 .box {
   border: 1px solid #ffffff7e;
   border-radius: 8px;
   padding: 20px;
   max-width: 500px;
-  margin: 20px auto;
-
+  margin: 0; /* Changed from auto so it fits the column */
+  box-sizing: border-box; /* Ensures padding stays inside */
 }
+
 .terminal-container {
     border: 1px solid #ffffff7e; 
     padding: 20px;
@@ -58,37 +85,37 @@ body {
     font-family: 'JetBrains Mono', monospace; 
     color: #ffffff;
     max-width: 500px;
-    margin: 20px auto;
+    margin: 0; /* Changed from auto */
     position: relative; 
+    box-sizing: border-box;
 }
 
-.terminal-header {
-    margin-bottom: 15px;
+.blinkies-container {
+    border: 1px solid #ffffff7e;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0; /* Changed from auto */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
-.status-ok {
-    color: #00ff00; 
-    text-shadow: 0 0 5px #00ff00; 
+.blinkies-container img {
+    width: 88px;
+    height: 31px;
+    image-rendering: pixelated;
 }
 
-.terminal-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 20px;
-}
-
-.line {
-    white-space: pre; 
-}
-ul {
-    list-style-type: none; 
-    padding-left: 10px;   
-  }
-
-  ul li::before {
-    content: "- ";       
-    margin-right: 8px;    
-  }
+/* --- TERMINAL INNER STYLES (Untouched) --- */
+.terminal-header { margin-bottom: 15px; }
+.status-ok { color: #00ff00; text-shadow: 0 0 5px #00ff00; }
+.terminal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.line { white-space: pre; font-family: 'JetBrains Mono', monospace;}
+ul { list-style-type: none; padding-left: 10px; }
+ul li::before { content: "- "; margin-right: 8px; }
 
 .japanese-header {
     font-family: 'JetBrains Mono', monospace;
@@ -99,48 +126,68 @@ ul {
     text-shadow: 0 0 10px #6930C3, 0 0 20px #6930C3;
     letter-spacing: 2px;
 }
+
 .japanese-layer {
     position: absolute;
-    top: -30px;       
+    top: -30px;      
     right: 15px;    
-    
-
-    
     font-family: "Noto Sans JP", sans-serif;
     font-size: 50px;
     font-weight: 700;
-
     color: #c4a5ff;
-
-    text-shadow:
-        0 0 2px #c4a5ff,
-        0 0 6px #a855f7,
-        0 0 14px #9333ea,
-        0 0 28px rgba(147,51,234,0.6);
-    
+    text-shadow: 0 0 2px #c4a5ff, 0 0 6px #a855f7, 0 0 14px #9333ea, 0 0 28px rgba(147,51,234,0.6);
     pointer-events: none; 
     z-index: 10;      
 }
-.line {
-    white-space: pre;
-    font-family: 'JetBrains Mono', monospace;
-}
 
-
-.blinkies-container {
+/* --- SIDEBAR CLASSES --- */
+.moon-container {
     border: 1px solid #ffffff7e;
     border-radius: 8px;
     padding: 20px;
-    max-width: 500px;
-    margin: 20px auto;
+    background-color: #000826;
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    font-family: 'JetBrains Mono', monospace;
 }
 
-.blinkies-container img {
-    width: 88px;
-    height: 31px;
-    image-rendering: pixelated;
+.moon-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.moon-info {
+    width: 100%;
+    text-align: left;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.moon-info p { margin: 2px 0; }
+
+.fav-gifs {
+    border: 1px solid #ffffff7e;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-sizing: border-box;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 850px) {
+    .page-layout {
+        flex-direction: column; /* Stacks the columns on small screens */
+        align-items: center;
+    }
+    .left-column, .right-column {
+        flex: auto;
+        width: 100%;
+        max-width: 500px;
+    }
 }
