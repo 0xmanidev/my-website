@@ -96,10 +96,11 @@
 					<img src="assets/metro.gif" alt="gif" style="width: 100%; image-rendering: pixelated;">
 					<img src="assets/sleep.gif" alt="gif" style="width: 100%; image-rendering: pixelated;">
 				</div>
-			<div id="corner-gifs" style="display: none;">
-                <img src="assets/left-sitter.gif" class="sitter-gif left-sitter" alt="sitter">
-                <img src="assets/right-sitter.gif" class="sitter-gif right-sitter" alt="sitter">
-            </div>
+			</div> </div> <div id="corner-gifs" style="display: none;">
+			<img src="assets/xp.gif" class="sitter-gif left-sitter" alt="sitter">
+			<img src="assets/minecraft.gif" class="sitter-gif right-sitter" alt="sitter">
+		</div>
+
 		<script>
 			var tag = document.createElement('script');
 			tag.src = "https://www.youtube.com/iframe_api";
@@ -108,91 +109,76 @@
 			
 			var player;
 			function onYouTubeIframeAPIReady() {
-			player = new YT.Player('player', {
-			 height: '100%',
-			 width: '100%',
-			 videoId: 'yJ6Lbsmb1lY',
-			 playerVars: { 
-			     'autoplay': 0, 
-			     'controls': 0, 
-			     'loop': 1, 
-			     'playlist': 'yJ6Lbsmb1lY',
-			     'origin': window.location.origin 
-			 }
-			});
+				player = new YT.Player('player', {
+					height: '100%',
+					width: '100%',
+					videoId: 'yJ6Lbsmb1lY',
+					playerVars: { 
+						'autoplay': 0, 
+						'controls': 0, 
+						'loop': 1, 
+						'playlist': 'yJ6Lbsmb1lY'
+					}
+				});
 			}
 
 			document.getElementById('startup-overlay').addEventListener('click', function() {
-			this.style.display = 'none'; 
-			
-			if (player && player.playVideo) {
-			 player.unMute(); 
-			 player.playVideo(); 
-			} else {
-			 const iframe = document.querySelector('#player iframe');
-			 if (iframe) {
-			     iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-			 }
-			}
+				this.style.display = 'none'; 
+				
+				// THIS LINE SHOWS THE SITTERS
+				document.getElementById('corner-gifs').style.display = 'block';
+				
+				if (player && player.playVideo) {
+					player.unMute(); 
+					player.playVideo(); 
+				} else {
+					const iframe = document.querySelector('#player iframe');
+					if (iframe) {
+						iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+					}
+				}
 			});
+
+			// --- Rest of your IST and Moon scripts ---
 			function updateIST() {
-			     const now = new Date();
-			     const istTime = now.toLocaleString("en-IN", {
-			         timeZone: "Asia/Kolkata",
-			         hour: '2-digit',
-			         minute: '2-digit',
-			         second: '2-digit',
-			         hour12: true 
-			     });
-			     const clockEl = document.getElementById('ist-clock');
-			     if(clockEl) clockEl.textContent = istTime;
-			 }
-			 setInterval(updateIST, 1000);
-			 updateIST();
+				const now = new Date();
+				const istTime = now.toLocaleString("en-IN", {
+					timeZone: "Asia/Kolkata",
+					hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true 
+				});
+				const clockEl = document.getElementById('ist-clock');
+				if(clockEl) clockEl.textContent = istTime;
+			}
+			setInterval(updateIST, 1000);
+			updateIST();
 			
-			 function updateMoon() {
-			     const date = new Date();
-			     const knownNewMoon = new Date(2000, 0, 6, 18, 14, 0);
-			     const totalMs = date - knownNewMoon;
-			     const totalDays = totalMs / (1000 * 60 * 60 * 24);
-			     const lunarCycle = 29.530588853;
-			     const age = totalDays % lunarCycle;
-			     const phasePercent = age / lunarCycle;
+			function updateMoon() {
+				const date = new Date();
+				const knownNewMoon = new Date(2000, 0, 6, 18, 14, 0);
+				const totalMs = date - knownNewMoon;
+				const totalDays = totalMs / (1000 * 60 * 60 * 24);
+				const lunarCycle = 29.530588853;
+				const age = totalDays % lunarCycle;
+				const phasePercent = age / lunarCycle;
+				let phaseName = ""; let filename = "";
+				if (phasePercent < 0.03 || phasePercent > 0.97) { phaseName = "New Moon"; filename = "assets/NewMoon.png"; } 
+				else if (phasePercent < 0.22) { phaseName = "Waxing Crescent"; filename = "assets/WaxingCrescent.png"; } 
+				else if (phasePercent < 0.28) { phaseName = "First Quarter"; filename = "assets/FirstQuarter.png"; } 
+				else if (phasePercent < 0.47) { phaseName = "Waxing Gibbous"; filename = "assets/WaxingGibbous.png"; } 
+				else if (phasePercent < 0.53) { phaseName = "Full Moon"; filename = "assets/FullMoon.png"; } 
+				else if (phasePercent < 0.72) { phaseName = "Waning Gibbous"; filename = "assets/WaningGibbous.png"; } 
+				else if (phasePercent < 0.78) { phaseName = "Third Quarter"; filename = "assets/ThirdQuarter.png"; } 
+				else { phaseName = "Waning Crescent"; filename = "assets/WaningCrescent.png"; }
+				document.getElementById('lp-phase').innerText = phaseName;
+				document.getElementById('lp-illum').innerText = (Math.abs(0.5 - phasePercent) * 200).toFixed(1) + "%";
+				document.getElementById('lp-age').innerText = age.toFixed(2);
+				const moonImg = document.getElementById('moon-visual');
+				if (moonImg) moonImg.src = filename;
+			}
+			updateMoon();
 			
-			     let phaseName = "";
-			     let filename = "";
-			
-			     if (phasePercent < 0.03 || phasePercent > 0.97) { 
-			         phaseName = "New Moon"; filename = "assets/NewMoon.png"; 
-			     } else if (phasePercent < 0.22) { 
-			         phaseName = "Waxing Crescent"; filename = "assets/WaxingCrescent.png"; 
-			     } else if (phasePercent < 0.28) { 
-			         phaseName = "First Quarter"; filename = "assets/FirstQuarter.png"; 
-			     } else if (phasePercent < 0.47) { 
-			         phaseName = "Waxing Gibbous"; filename = "assets/WaxingGibbous.png"; 
-			     } else if (phasePercent < 0.53) { 
-			         phaseName = "Full Moon"; filename = "assets/FullMoon.png"; 
-			     } else if (phasePercent < 0.72) { 
-			         phaseName = "Waning Gibbous"; filename = "assets/WaningGibbous.png"; 
-			     } else if (phasePercent < 0.78) { 
-			         phaseName = "Third Quarter"; filename = "assets/ThirdQuarter.png"; 
-			     } else { 
-			         phaseName = "Waning Crescent"; filename = "assets/WaningCrescent.png"; 
-			     }
-			
-			     document.getElementById('lp-phase').innerText = phaseName;
-			     document.getElementById('lp-illum').innerText = (Math.abs(0.5 - phasePercent) * 200).toFixed(1).replace("-","") + "%";
-			     document.getElementById('lp-age').innerText = age.toFixed(2);
-			     
-			     const moonImg = document.getElementById('moon-visual');
-			     if (moonImg) moonImg.src = filename;
-			 }
-			 updateMoon();
-			
-			 setInterval(() => {
-			     const timeEl = document.getElementById('lp-time');
-			     if(timeEl) timeEl.innerText = new Date().toLocaleTimeString();
-			 }, 1000);
+			setInterval(() => {
+				const timeEl = document.getElementById('lp-time');
+				if(timeEl) timeEl.innerText = new Date().toLocaleTimeString();
+			}, 1000);
 		</script>
-	</body>
-</html>
